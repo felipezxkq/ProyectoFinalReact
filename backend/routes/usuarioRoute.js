@@ -13,9 +13,10 @@ var api = express.Router();
  
 //  Guardar usuario
 api.post('/usuario', userController.guardar);
-api.get('/usuario', auth.isAuth,userController.todos);
+api.get('/usuario', auth.isAuth, userController.todos);
 api.post('/usuario/validar', userController.validar);
-api.post('/usuario/vigencia',auth.isAuth,userController.validaVigenciaUsuario);
+api.post('/usuario/vigencia', auth.isAuth, userController.validaVigenciaUsuario);
+api.put('/usuario/activar', userController.activar_desactivar);
 
 // api.post('/autoguardar',autoController.guardar);
 

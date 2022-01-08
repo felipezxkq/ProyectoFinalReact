@@ -55,8 +55,10 @@ export default function Menu() {
 
     useEffect(() => {
         const token = localStorage.getItem('TOKEN_APP_TALLER');
-        if (token == null) {
+        if (token == null) { // PONER OR TOKEN ACTIVO USUARIO
             window.location = '/';
+        }else{
+            console.log("TOKEN: "+token);
         }
     }, []);
 

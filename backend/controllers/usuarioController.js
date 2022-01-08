@@ -13,9 +13,10 @@ function guardar(req, res) {
     User.nombre = req.body.usuario;
     User.mail = req.body.mail;
     User.pass = req.body.pass;
+    User.activo = req.body.activo;
 
 
-    User.save((err, usuariorstore) => {
+    User.save( (err, usuariorstore) => {
 
         if (err) res.status(500).send(`Error base de datos> ${err}`)
 
@@ -24,11 +25,10 @@ function guardar(req, res) {
     })
 }
 
+
+
 function validar(req, res) {
-
-
     var password = req.body.pass;
-
 
     Usuario.findOne({'mail': req.body.mail}, (err, user) => {
         if (err) return res.status(500).send({ mensaje: 'error al realizar la peticion' })
@@ -41,14 +41,27 @@ function validar(req, res) {
             } else if (!isMatch) {
                 res.status(401).send({ 'mensaje':'incorrecto'})
             } else {
-                res.status(200).send({ 'mensaje':'correcto','token':servicio.createToken(user)})
+                if(!user.activo){
+                    res.status(401).send({ 'mensaje':'Usuario no activo'})
+                }else{
+                    res.status(200).send({ 'mensaje':'correcto','token':servicio.createToken(user)})
+                }
+                
 
             }
           })
     })
 
- 
+}
 
+function activar_desactivar(req, res){
+    let activox = req.body.activo;
+    Usuario.findOneAndUpdate({'mail': req.body.mail}, {activo : req.body.activo}, (err, user) => {
+        if (err) return res.status(500).send({ mensaje: 'error al realizar la peticion' })
+        if (!user) return res.status(401).send({ mensaje: 'Error usuario no existe' })
+
+        res.status(200).send({ user })
+    })
 
 }
 
@@ -79,6 +92,6 @@ module.exports = {
     guardar,
     todos,
     validar,
-    validaVigenciaUsuario
-
+    validaVigenciaUsuario,
+    activar_desactivar
 };

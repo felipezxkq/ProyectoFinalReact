@@ -2,9 +2,11 @@ import logo from './logo.svg';
 import './App.css';
 import SignIn from './SignIn';
 import Menu from './Menu';
+import Registro from './Registro'
 import { useState, useEffect } from 'react';
 import { createBrowserHistory } from 'history';
 import { BrowserRouter as Router, Switch, Route, Link, Navigate, Redirect } from "react-router-dom";
+import { Portal } from '@material-ui/core';
 
 const browserHistory = createBrowserHistory();
 
@@ -20,6 +22,9 @@ function App() {
         </Route>
         <Route path="/menu">
           <Menu />
+        </Route>
+        <Route path="/registro">
+          <Registro />
         </Route>
 
 

@@ -19,6 +19,8 @@ var persona_asignatura_routes = require('./routes/personas_asignaturaRoute');
 var usuario_routes = require('./routes/usuarioRoute');
 var testRoutes = require('./routes/testRoute');
 var mailRoute = require('./routes/mailroute');
+var especialidadRoutes = require('./routes/especialidadRoute');
+var especialistaRoutes = require('./routes/especialistasRoute');
 const mongoose = require('mongoose')
 
 
@@ -37,6 +39,8 @@ app.use('/api', persona_asignatura_routes);
 app.use('/api', usuario_routes);
 app.use('/api', testRoutes);
 app.use('/api', mailRoute);
+app.use('/api',especialidadRoutes);
+app.use('/api',especialistaRoutes);
 
 
 const options = {

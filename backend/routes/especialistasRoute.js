@@ -12,7 +12,7 @@ var api = express.Router();
 //  Guardar Autos
 api.post('/especialista', especialistaController.guardar);
 api.get('/especialista', especialistaController.listar);
-
+api.get('/especialistafiltrado', especialistaController.filtrado);
 // Exportamos la configuración
 module.exports = api;
 

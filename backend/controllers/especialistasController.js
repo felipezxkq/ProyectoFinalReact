@@ -27,10 +27,20 @@ function listar(req,res){
       .populate('especialidad').exec((err, especialistaconespecialidad) => {
         res.status(200).send({ especialistaconespecialidad })
       })
-  }
+}
+
+function filtrado(req,res){
+    let idEspecialidad = req.params.idEspecialidad
+    Especialista.find({'idEspecialidad':idEspecialidad}, (err, especialista)=>{
+        if (err) return res.status(500).send({ mensaje: 'error al realizar la peticion' })
+        if (!especialista) return res.status(401).send({ mensaje: 'Error usuario no existe' })
+        res.status(200).send({ especialista })
+    })
+}
 
 
 module.exports = {
     guardar,
-    listar
+    listar,
+    filtrado
 };

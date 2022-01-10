@@ -12,7 +12,6 @@ var api = express.Router();
 //  Guardar Autos
 api.post('/especialidad', especialidadController.guardar);
 api.get('/especialidad', especialidadController.listar);
-api.get('/especialidad', especialidadController.listar);
 api.delete('/eliminar/:id', especialidadController.EliminaId);
 
 // Exportamos la configuración

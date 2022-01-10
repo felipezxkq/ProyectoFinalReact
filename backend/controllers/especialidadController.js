@@ -35,14 +35,15 @@ function EliminaId(req,res){
     let idespecialidad = req.params.id
     Especialidad.findByIdAndDelete(idespecialidad, (err) => {
         if (err) return res.status(500).send({ message: 'error al eliminar> ${err}'  })
-        res.status(200).send({ message: 'Marca eliminada papu' })
+        res.status(200).send({ message: 'Especialidad eliminada papu' })
         
     })
 }
 
 
+
 module.exports = {
     guardar,
     listar,
-    EliminaId
+    EliminaId,
 };

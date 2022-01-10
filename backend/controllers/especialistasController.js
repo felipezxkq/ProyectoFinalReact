@@ -31,10 +31,8 @@ function listar(req,res){
 
 function filtrado(req,res){
     let idEspecialidad = req.params.idEspecialidad
-    Especialista.find({'idEspecialidad':idEspecialidad}, (err, especialista)=>{
-        if (err) return res.status(500).send({ mensaje: 'error al realizar la peticion' })
-        if (!especialista) return res.status(401).send({ mensaje: 'Error usuario no existe' })
-        res.status(200).send({ especialista })
+    Especialista.find().populate({path:'especialidad', match:{_id: idEspecialidad}}).exec((err, especialistaconespecialidad) => {
+    res.status(200).send({ especialistaconespecialidad })
     })
 }
 
